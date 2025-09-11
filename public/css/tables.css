@@ -1,0 +1,14 @@
+body {
+  background-color:  #f5f5dc;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.btn-brown {
+  background-color: #8B4513;
+  color: white;
+}
+.table-brown thead {
+  background-color: #8B4513 !important;
+  color: white !important;
+}

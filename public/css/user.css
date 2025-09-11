@@ -1,0 +1,27 @@
+body {
+  background-color:  #f5f5dc;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+/*navbar*/
+.navbar {
+  background-color: #8B4513;
+
+}
+.nav-link.active {
+   position: relative;
+}
+
+.nav-link.active::after {
+  content: "";             /* required for pseudo-element */
+  position: absolute;
+  left: 0;
+  bottom: 0;               /* aligns with the bottom of the link */
+  width: 100%;             /* spans the entire link width */
+  height: 3px;             /* thickness of the line */
+  background-color: #CEA283; /* your underline color */
+  border-radius: 2px;      /* optional: rounded edges */
+}

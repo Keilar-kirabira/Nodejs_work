@@ -1,0 +1,47 @@
+extends layout.pug
+
+block content
+  .container.mt-5
+    .form-container.mx-auto.col-lg-10
+      h2.mb-4.text-center Edit Stock Form
+      form.row.g-3(action=`/editstock/${item._id}`, method="post")
+        .col-md-6
+          label.form-label(for="productName") Product Name
+          input.form-control#productName(type="text", name="productName", value=`${item.productName}` , placeholder="Enter product name")
+        .col-md-6
+          label.form-label(for="productType") Type of Product
+          select.form-select#productType(name="productType")
+            option(value=`${item.productType}` selected) #{item.productType}
+            option Wood
+            option Furniture
+            option Other
+        .col-md-4
+          label.form-label(for="quantity") Quantity
+          input.form-control#quantity(type="number", name="quantity",  value=`${item.quantity}`,  placeholder="Enter quantity")
+        .col-md-4
+          label.form-label(for="costPrice") Cost Price (UGX)
+          input.form-control#costPrice(type="number", name="costPrice",  value=`${item.costPrice}`,   placeholder="Enter cost price")
+        .col-md-4
+          label.form-label(for="sellingPrice") Selling Price (UGX)
+          input.form-control#sellingPrice(type="number", name="sellingPrice", value=`${item.sellingPrice}`,   placeholder="Enter selling price")
+        .col-md-6
+          label.form-label(for="supplierName") Supplier Name
+          input.form-control#supplierName(type="text", name="supplierName",  value=`${item.supplierName}`,    placeholder="Enter supplier name")
+        .col-md-6
+          label.form-label(for="date") Date
+          input.form-control#date(type="date",value=`${item.date}`,  name="datebought")
+        .col-md-6
+          label.form-label(for="quality") Quality
+          select.form-select#quality(name="quality")
+            option(value=`${item.quality}` selected) #{item.quality}
+            option(value="High") High
+            option(value="Medium") Medium
+            option(value="Low") Low
+        .col-md-6
+          label.form-label(for="color") Color (Optional)
+          input.form-control#color(type="text", name="color",   value=`${item.color}`,  placeholder="Enter color")
+        .col-md-12
+          label.form-label(for="measurements") Measurements (Optional)
+          input.form-control#measurements(type="text", name="measurements", value=`${item.measurements}`,   placeholder="Enter measurements")
+        .col-12
+          button.btn.submit-btn.w-100(type="submit") Update  Stock
