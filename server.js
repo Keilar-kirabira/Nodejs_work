@@ -6,6 +6,8 @@ const passport = require('passport');
 const expressSession = require('express-session');
 const MongoStore = require("connect-mongo");
 const moment = require("moment");
+const methodOverride = require('method-override');
+
 
 
 require('dotenv').config();
@@ -42,6 +44,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 //4.Middleware
+//method override
+app.use(methodOverride('_method'));
 // app.use(express.static('public'));   //static files
 app.use(express.static(path.join(__dirname,"public")));
 app.use(express.urlencoded({ extended: true })); // helps to pass data from forms

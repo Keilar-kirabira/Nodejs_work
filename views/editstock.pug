@@ -4,7 +4,7 @@ block content
   .container.mt-5
     .form-container.mx-auto.col-lg-10
       h2.mb-4.text-center Edit Stock Form
-      form.row.g-3(action=`/editstock/${item._id}`, method="post")
+      form.row.g-3(action=`/editstock/${item._id}?_method=PUT`, method="post")
         .col-md-6
           label.form-label(for="productName") Product Name
           input.form-control#productName(type="text", name="productName", value=`${item.productName}` , placeholder="Enter product name")

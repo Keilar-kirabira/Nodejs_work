@@ -20,7 +20,8 @@ head
         th(scope='col') Quality 
         th(scope='col') Color
         th(scope='col') Measurements
-        th(scope='col') Actions
+        th(scope='col') Update 
+        th(scope='col') Delete
     tbody
       if items.length 
         each item in items 
@@ -37,5 +38,9 @@ head
             td #{item.measurements}
             td
               a.btn.btn-warning(href=`/editstock/${item._id}`) Edit
+            td 
+              form(method='post' action="/deletestock")
+                input(type="hidden" name='id' value=item._id)
+                button.btn.btn-danger.btn-block(type='sumbit') Delete
   a.btn.btn-dark.mt-3(href='/stock') Add New Stock
 script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js')
