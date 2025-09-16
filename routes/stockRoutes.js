@@ -24,8 +24,37 @@ router.post("/stock",  async (req, res) => {
 });
 
 //  ensureauthenticated,  ensureManager,
-router.get("/dashboard", (req, res) => {
-  res.render("dashboard");
+router.get("/dashboard", async(req, res) => {
+  try {
+    //expenses for buying  wood stock
+    let totalExpensePoles = await StockModel.aggregate([
+      {$match:{productName: "pole"}},
+      {$group:{_id:"$productType",
+        totalQuantity:{$sum:"$quantity"},
+        //costprice is for each one item
+        totalcost:{$sum: {$multiply:["$quantity","$costPrice"]}}
+      }}
+    ]);
+      let totalExpenseTimber = await StockModel.aggregate([
+      {$match:{productName: "Timber"}},
+      {$group:{_id:"$productType",
+        totalQuantity:{$sum:"$quantity"},
+        //costprice is for each one item
+        totalcost:{$sum: {$multiply:["$quantity","$costPrice"]}}
+      }}
+    ]);
+    console.log(totalExpensePoles)
+    //to avoid crashing the app if no expenses have been added
+    //set default values if no expenses in the DB
+    res.render("dashboard",{
+    totalExpensePoles:totalExpensePoles[0],
+    totalExpenseTimber:totalExpenseTimber[0],
+    });
+  } catch (error) {
+    res.status(400).send("Unable to find items from the DB")
+    console.error('Aggregation Error:',error.message)
+    
+  }
 });
 
 //getting stock from the database
