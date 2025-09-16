@@ -7,14 +7,21 @@ block content
       form.row.g-3(action="/stock", method="post")
         .col-md-6
           label.form-label(for="productName") Product Name
-          input.form-control#productName(type="text", name="productName", placeholder="Enter product name")
+          select.form-select#productType(name="productName")
+            option(value="" disabled, selected) Choose...
+            option(value="Timber") Timber 
+            option(value="Hardwood") Hardwood
+            option(value="Softwood") Softwood 
+            option(value="Poles") Poles 
+            option(value="Chairs") Chairs 
+            option(value="Tables") Tables
+            option(value="Cupboards") Cupboards 
         .col-md-6
           label.form-label(for="productType") Type of Product
           select.form-select#productType(name="productType")
-            option(disabled, selected) Choose...
-            option Wood
-            option Furniture
-            option Other
+            option(value="" disabled, selected) Choose...
+            option(value="Wood") Wood
+            option(value="Furniture") Furniture
         .col-md-4
           label.form-label(for="quantity") Quantity
           input.form-control#quantity(type="number", name="quantity", placeholder="Enter quantity")
