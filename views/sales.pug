@@ -41,17 +41,26 @@ nav.navbar.navbar-expand-lg
         option(value="Wood") Wood
         option(value="Furniture") Furniture
     .mb-3
-      label.form-label(for="product") Product
-      input#product.form-control(type="text", name="product", placeholder="Product", required)
+      label.form-label(for="product") Product Name
+      select#product.form-select(name="product", required)
+        if stocks.length 
+          each stock in stocks 
+            option(value=stock.productName)= stock.productName
     .mb-3
       label.form-label(for="quantity") Quantity
       input.form-control#quantity(type="number", name="quantity", placeholder="Enter quantity")
     .mb-3
-      label.form-label(for="sales agent") Sales Agent
-      input#salesAgent.form-control(type="text", name="salesAgent", placeholder="Attendant name", required)
+      label.form-label(for="unitPrice") Unit Price
+      input#unitPrice.form-control(type="text", name="unitPrice", placeholder="unitPrice", required)
+    .mb-3
+      label.form-label(for="totalPrice") Total Price
+      input.form-control#totalPrice(type="totalPrice", name="totalPrice", placeholder="Total Price", required)
+    //- .mb-3
+    //-   label.form-label(for="sales agent") Sales Agent
+    //-   input#salesAgent.form-control(type="text", name="salesAgent", placeholder="Attendant name", required)
     .mb-3.form-check
       label.form-check-label(for="transportfee") Add 5% Transport Fee
-      input.form-check-input#transportCheck(type="checkbox", name="transportCheck")
+      input.form-check-input#transportfee(type="checkbox", name="transportCheck" )
     .mb-3
       label.form-label(for="paymentMethod") Payment Method
       select#paymentMethod.form-select(name="paymentMethod", required)
@@ -67,22 +76,22 @@ nav.navbar.navbar-expand-lg
               <div class="alert alert-info">
                 <strong>Final Total:</strong> UGX <span id="final-total">0</span>
               </div> 
-    button.btn.btn-outline-dark(type="submit") sumbit
-.container.my-5
-  h3 Sales Records
-  table.table.table-striped
-    thead
-      tr
-        th Customer
-        th Product Type
-        th Product Name
-        th Quantity
-        th Agent
-        th Date
-        th Payment
-        th Total (UGX)
-    tbody#sales-records
-  h5.mt-3
-    | Final Total: UGX 
-    span#rFinalTotal
-script(src="public/js/sales.js")
+    button.btn.btn-outline-dark(type="submit") submit
+//- .container.my-5
+//-   h3 Sales Records
+//-   table.table.table-striped
+//-     thead
+//-       tr
+//-         th Customer
+//-         th Product Type
+//-         th Product Name
+//-         th Quantity
+//-         th Agent
+//-         th Date
+//-         th Payment
+//-         th Total (UGX)
+//-     tbody#sales-records
+//-   h5.mt-3
+//-     | Final Total: UGX 
+//-     span#rFinalTotal
+script(src="/js/calcTotal.js")

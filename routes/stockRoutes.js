@@ -3,6 +3,7 @@ const router = express.Router();
 const {ensureauthenticated,ensureManager} = require("../middleware/auth");
 
 const StockModel = require("../models/stockModel");
+const salesModel = require("../models/salesModels");
 
 // ensureauthenticated, ensureManager,
 router.get("/stock",  (req, res) => {
@@ -43,12 +44,23 @@ router.get("/dashboard", async(req, res) => {
         totalcost:{$sum: {$multiply:["$quantity","$costPrice"]}}
       }}
     ]);
-    console.log(totalExpensePoles)
+    //sales revenue
+     let totalRevenueSofa = await salesModel.aggregate([
+      {$match:{product: "sofa"}},
+      {$group:{_id:"$productType",
+        totalQuantity:{$sum:"$quantity"},
+        //unitprice is for each one item
+        totalcost:{$sum: {$multiply:["$quantity","$unitPrice"]}}
+      }}
+    ]);
+    // console.log(totalExpensePoles)
     //to avoid crashing the app if no expenses have been added
     //set default values if no expenses in the DB
+    // totalRevenueSofa = totalRevenueSofa[0]||{totalQuantity:0,totalcost:0}
     res.render("dashboard",{
     totalExpensePoles:totalExpensePoles[0],
     totalExpenseTimber:totalExpenseTimber[0],
+    totalRevenueSofa:totalRevenueSofa[0],
     });
   } catch (error) {
     res.status(400).send("Unable to find items from the DB")

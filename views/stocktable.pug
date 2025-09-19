@@ -20,6 +20,7 @@ head
         th(scope='col') Quality 
         th(scope='col') Color
         th(scope='col') Measurements
+        th(scope='col') Status 
         th(scope='col') Update 
         th(scope='col') Delete
     tbody
@@ -36,6 +37,13 @@ head
             td #{item.quality}
             td #{item.color}
             td #{item.measurements}
+            //- if item.quantity <= 20
+            //-   td.alert.alert-danger low stock (#{item.quantity} left)
+            td 
+              if item.quantity <= 5
+                span.btn.btn-warning Low Stock
+              else 
+                span.btn.btn-warning In Stock  
             td
               a.btn.btn-warning(href=`/editstock/${item._id}`) Edit
             td 
