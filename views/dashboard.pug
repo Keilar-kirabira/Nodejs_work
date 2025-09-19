@@ -11,8 +11,9 @@ block content
         .card.text-white.bg-dark.h-100
           .card-body
             h5.card-title Total Expenses 
-            p.card-text #{totalExpensePoles.totalcost} Shs 
-            p.card-text #{totalExpenseTimber.totalcost} Shs
+            p.card-text For Poles: Shs #{new Intl .NumberFormat().format(totalExpensePoles.totalcost)}
+            p.card-text For Timber: Shs  #{new Intl .NumberFormat().format(totalExpenseTimber.totalcost)}
+            h5.card-text Total Expenses: Shs #{new Intl .NumberFormat().format((totalExpensePoles.totalcost)+ (totalExpenseTimber.totalcost))}
       .col-md-3.mb-4
         .card.text-white.bg-dark.h-100
           .card-body
@@ -22,7 +23,8 @@ block content
         .card.text-white.bg-dark.h-100
           .card-body
             h5.card-title Total Sales
-            p.card-text UGX #{totalSales}
+            p.card-text For Sofa: Shs #{new Intl .NumberFormat().format(totalRevenueSofa.totalcost)}
+            p.card-text UGX 
       .col-md-3.mb-4
         .card.text-white.bg-danger.h-100
           .card-body
