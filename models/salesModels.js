@@ -17,12 +17,22 @@ quantity:{
     type : Number,
     required : true
 },
+unitPrice:{
+    type : Number,
+    required : true
+},
+totalPrice: {
+    type: Number,
+    required: true
+  },
 salesAgent:{
-    type : String,
+    type : mongoose.Schema.Types.ObjectId,
+    ref:"UserModel",
     required : true
 },
 transportCheck:{
     type : Boolean,
+    default: false,
 },
 paymentMethod :{
     type : String,
